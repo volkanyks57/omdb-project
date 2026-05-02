@@ -430,6 +430,10 @@ h1, h2, h3, h4, h5, .logo, .section-title, .load-more-btn {
 }
 
 @media (max-width: 768px) { 
+    .app-wrapper {
+        flex-direction: column;
+    }
+
     .sidebar { 
         width: 100%; height: auto; position: relative; margin: 0; border-radius: 0; border: none; 
         border-bottom: 1px solid var(--border); background: var(--bg-surface); backdrop-filter: none;
@@ -448,6 +452,19 @@ h1, h2, h3, h4, h5, .logo, .section-title, .load-more-btn {
     .prev-arrow { left: 10px; } 
     .next-arrow { right: 10px; } 
     .prev-arrow:hover, .next-arrow:hover { transform: translateY(-50%); }
+
+    .results-grid { 
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+        gap: 20px 12px; 
+    }
+    .card-poster { height: 220px; }
+
+    .modal-content { padding: 25px 20px; }
+    .modal-content img { 
+        width: 180px !important; 
+        height: 270px !important; 
+        margin: 0 auto; 
+    }
 }
 
 /* MAGIC SEARCH (AI) - AUTOMATIC WELCOME BALLOON */
