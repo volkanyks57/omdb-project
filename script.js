@@ -204,7 +204,7 @@ async function executeMagicSearch(query) {
         Give me ONLY a valid JSON array containing the original English titles of the movies. 
         Do not provide explanations, do not converse. Just write the names inside square brackets. Example: ["Inception", "The Matrix", "Interstellar"]`;
 
-        const aiResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${config.GEMINI_API_KEY}`, {
+        const aiResponse = await fetch(`https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent?key=${config.GEMINI_API_KEY}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
