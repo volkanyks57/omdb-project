@@ -1,6 +1,4 @@
-// ==========================================================================
-// 1. DOM ELEMENTLERİ
-// ==========================================================================
+// 1. DOM ELEMENTS
 const searchInput = document.getElementById('searchInput');
 const searchSuggestions = document.getElementById('searchSuggestions');
 const resultsGrid = document.getElementById('resultsGrid');
@@ -13,17 +11,17 @@ const favCountEl = document.getElementById('favCount');
 const showFavoritesBtn = document.getElementById('showFavorites');
 const homeLogo = document.querySelector('.logo');
 
-// Modal Elementleri
+// Modal Elements
 const movieModal = document.getElementById('movieModal');
 const modalBody = document.getElementById('modalBody');
 const modalBackdrop = document.getElementById('modalBackdrop');
 const closeModalBtn = document.getElementById('closeModalBtn');
 
-// Tema Elementleri
+// Theme Elements
 const themeToggleBtn = document.getElementById('themeToggle');
 const themeIcon = themeToggleBtn.querySelector('i');
 
-// Hero Slider Elementleri
+// Hero Slider Elements
 const heroSection = document.getElementById('heroSection');
 const heroBackdrop = document.getElementById('heroBackdrop');
 const heroTitle = document.getElementById('heroTitle');
@@ -36,13 +34,11 @@ const heroDetailBtn = document.getElementById('heroDetailBtn');
 const heroFavBtn = document.getElementById('heroFavBtn');
 const heroDotsContainer = document.getElementById('heroDots');
 
-// Magic Search (AI) Elementleri
+// Magic Search (AI) Elements
 const magicSearchBtn = document.getElementById('magicSearchBtn');
 let isAiMode = false;
 
-// ==========================================================================
-// 2. GLOBAL DEĞİŞKENLER
-// ==========================================================================
+// 2. GLOBAL VARIABLES
 let currentPage = 1;
 let currentSearch = "";
 let allFetchedMovies = []; 
@@ -51,9 +47,7 @@ let favorites = JSON.parse(localStorage.getItem('myMovies')) || [];
 let totalApiResults = 0;
 let isFetchingDetails = false;
 
-// ==========================================================================
-// 3. BAŞLANGIÇ VE TEMA AYARLARI
-// ==========================================================================
+// 3. STARTUP AND THEME SETTINGS
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('movieHubTheme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
@@ -83,9 +77,7 @@ function updateThemeIcon(theme) {
     }
 }
 
-// ==========================================================================
-// 4. SİNEMATİK HERO SLIDER MANTIĞI
-// ==========================================================================
+// 4. CINEMATIC SLIDER
 let heroMovies = [];
 let currentHeroIndex = 0;
 let heroTimer;
@@ -177,9 +169,7 @@ document.getElementById('heroNext').addEventListener('click', () => {
 heroSection.addEventListener('mouseenter', stopHeroAutoPlay);
 heroSection.addEventListener('mouseleave', startHeroAutoPlay);
 
-// ==========================================================================
-// 5. YAPAY ZEKA (AI) MAGIC SEARCH MANTIĞI
-// ==========================================================================
+// 5. AI-POWERED SEARCH
 magicSearchBtn.addEventListener('click', () => {
     isAiMode = !isAiMode;
     magicSearchBtn.classList.toggle('active', isAiMode);
@@ -234,7 +224,7 @@ async function executeMagicSearch(query) {
         const recommendedMovies = JSON.parse(jsonString);
 
         allFetchedMovies = [];
-        totalApiResults = recommendedMovies.length; // AI araması için toplam sonucu 5 yapıyoruz
+        totalApiResults = recommendedMovies.length;
 
         for (let title of recommendedMovies) {
             try {
@@ -255,9 +245,7 @@ async function executeMagicSearch(query) {
     }
 }
 
-// ==========================================================================
-// 6. ARAMA VE FİLTRELEME SİSTEMİ
-// ==========================================================================
+// 6. SEARCH AND FILTERING SYSTEM
 let suggestionTimeout = null;
 
 searchInput.addEventListener('input', (e) => {
@@ -531,9 +519,7 @@ function displayResults(movies) {
     }).join('');
 }
 
-// ==========================================================================
-// 7. YARDIMCI FONKSİYONLAR VE MODAL
-// ==========================================================================
+// 7. AUXILIARY FUNCTIONS
 function toggleFavorite(id, title, poster) {
     const index = favorites.findIndex(f => f.imdbID === id);
     if (index === -1) favorites.push({ imdbID: id, Title: title, Poster: poster });
@@ -691,4 +677,3 @@ searchInput.addEventListener('keypress', (e) => {
 
 closeModalBtn.onclick = () => movieModal.classList.add('hidden');
 window.onclick = (e) => { if (e.target == movieModal) movieModal.classList.add('hidden'); };
-
